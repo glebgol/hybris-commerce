@@ -6,6 +6,7 @@
     <extension dir="${HYBRIS_BIN_DIR}/custom/training/traininginitialdata"/>
     <extension dir="${HYBRIS_BIN_DIR}/custom/training/trainingstorefront"/>
     <extension dir="${HYBRIS_BIN_DIR}/custom/training/trainingtest"/>
+    <extension name="questions" />
     <extension name='adaptivesearch' />
     <extension name='adaptivesearchbackoffice' />
     <extension name='adaptivesearchfacades' />

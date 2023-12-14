@@ -1,0 +1,6 @@
+$catalogVersion = catalogVersion(catalog(id[default = 'electronicsProductCatalog']), version[default = 'Staged'])
+
+INSERT_UPDATE Question; code[unique = true]; question                                                                       ; answer                                                                                                   ; customer(uid)                  ; answerCustomer(uid)        ; product(code, $catalogVersion)
+                      ; Q1                 ; Is it really good product?                                                     ; Very good! :-)                                                                                           ; anonymous                      ; linda.wolf@rustic-hw.com   ; 23355
+                      ; Q2                 ; Can you provide more information about the warranty coverage for this product? ; Certainly! The duration of the warranty for this specific product is one year from the date of purchase. ; lars.bauer@rustic-hw.com       ; mingmei.wang@rustic-hw.com ; 23355
+                      ; Q3                 ; Is this product compatible with both Mac and PC operating systems?             ; Absolutely!                                                                                              ; anthony.lombardi@rustic-hw.com ; anonymous                  ; 65652
