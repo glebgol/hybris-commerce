@@ -13,8 +13,8 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
            
-    <context:annotation-config/> 
-
+    <context:annotation-config/>
+	<context:component-scan base-package="com.training.questions" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"/>
 
 	<!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
 	<bean id="defaultQuestionsJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
@@ -26,12 +26,12 @@
 	</bean>
 
 	<bean id="getQuestionsBeforeViewHandler" parent="beforeViewHandlerAdapter">
-		<property name="adaptee">
-			<ref bean="defaultQuestionsBeforeViewJsPropsHandlerAdaptee"/>
-		</property>
+		<property name="adaptee" ref="defaultQuestionsBeforeViewJsPropsHandlerAdaptee"/>
 	</bean>
 	<bean id="QuestionsBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList" parent="listMergeDirective">
 		<property name="add" ref="getQuestionsBeforeViewHandler"/>
 	</bean>
 
+	<bean id="QuestionsCMSComponentController" class="com.training.questions.controllers.cms.QuestionsCMSComponentController">
+	</bean>
 </beans>

@@ -1,4 +1,4 @@
-$catalogVersion = catalogVersion(catalog(id[default = 'electronicsProductCatalog']), version[default = 'Staged'])
+$catalogVersion = catalogVersion(catalog(id[default = 'electronicsProductCatalog']), version[default = 'Online'])
 
 INSERT_UPDATE Question; code[unique = true]; question                                                                       ; answer                                                                                                   ; customer(uid)                  ; answerCustomer(uid)        ; product(code, $catalogVersion)
                       ; Q1                 ; Is it really good product?                                                     ; Very good! :-)                                                                                           ; anonymous                      ; linda.wolf@rustic-hw.com   ; 23355
