@@ -71,4 +71,8 @@
 		  class="com.training.questions.populators.QuestionsCountSearchResultVariantProductPopulator"
 		  parent="variantCommerceSearchResultProductPopulator">
 	</bean>
+
+	<bean id="questionsCountFacetDisplayNameProvider"
+		  class="com.training.questions.providers.QuestionsCountFacetDisplayNameProvider">
+	</bean>
 </beans>
