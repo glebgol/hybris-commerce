@@ -46,7 +46,7 @@
 			<div class="product__listing--description">${ycommerce:sanitizeHTML(product.summary)}</div>
 		</c:if>
 
-
+		<h4>Questions: ${product.questionsCount}</h4>
 
 		<c:set var="product" value="${product}" scope="request"/>
 		<c:set var="addToCartText" value="${addToCartText}" scope="request"/>
