@@ -1,0 +1,11 @@
+$catalogVersion = catalogVersion(catalog(id[default = 'electronicsProductCatalog']), version[default = 'Staged'])
+
+INSERT_UPDATE UserPriceGroup; code[unique = true]        ; name
+                            ; priceDependentOnOrderGroup ; Order Group
+
+
+INSERT_UPDATE PriceRow; product(code, $catalogVersion)[unique = true]; ug(code)[allownull = true] ; net[unique = true, default = false]; currency(isocode); price; unit(code)[default = pieces]; minqtd; unitFactor
+                      ; 358639                                       ; priceDependentOnOrderGroup ;                                    ; USD              ; 300  ;                             ; 2     ; 1
+
+INSERT_UPDATE Customer; uid[unique = true]; Europe1PriceFactory_UPG(code)
+                      ; anonymous         ; priceDependentOnOrderGroup
