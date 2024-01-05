@@ -1,0 +1,14 @@
+$contentCatalog = electronicsContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $contentCatalog]), CatalogVersion.version[default = Staged])[default = $contentCatalog:Staged]
+$emailResource = jar:de.hybris.training.core.setup.CoreSystemSetup&/trainingcore/import/emails
+
+
+INSERT_UPDATE RendererTemplate; code[unique = true]            ; contextClass[default = 'de.hybris.training.facades.process.email.context.NewQuestionsEmailContext']; templateScript[lang = en, translator = de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]; rendererType(code)[default = 'velocity']
+                              ; email-newAddedQuestionsBody    ;                                                                                                    ; $emailResource/email-newAddedQuestionsBody.vm                                                                   ;
+                              ; email-newAddedQuestionsSubject ;                                                                                                    ; $emailResource/email-newAddedQuestionsSubject.vm                                                                ;
+
+INSERT_UPDATE EmailPageTemplate; $contentCV[unique = true]; uid[unique = true]        ; active; frontendTemplateName; subject(code)                  ; htmlTemplate(code)          ; restrictedPageTypes(code)
+                               ;                          ; NewQuestionsEmailTemplate ; true  ; newQuestionsEmail   ; email-newAddedQuestionsSubject ; email-newAddedQuestionsBody ; EmailPage
+
+INSERT_UPDATE EmailPage; $contentCV[unique = true]; uid[unique = true]; masterTemplate(uid, $contentCV); approvalStatus(code)[default = 'approved']
+                       ;                          ; NewQuestionsEmail ; NewQuestionsEmailTemplate      ;

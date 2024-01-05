@@ -1,0 +1,30 @@
+<html lang="">
+<head>
+    <title></title>
+</head>
+
+<body bgcolor="#ffffff">
+
+<h1>New questions</h1>
+
+<table>
+    <tr>
+        <th>Code</th>
+        <th>Question</th>
+        <th>Question Customer</th>
+        <th>Answer</th>
+        <th>Answer Customer</th>
+    </tr>
+    #foreach ($questionData in ${ctx.questionDataList})
+        <tr>
+            <td>$questionData.code</td>
+            <td>$questionData.question</td>
+            <td>$questionData.questionCustomer</td>
+            <td>$questionData.answer</td>
+            <td>$questionData.answerCustomer</td>
+        </tr>
+    #end
+</table>
+
+</body>
+</html>

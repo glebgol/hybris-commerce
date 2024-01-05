@@ -331,6 +331,10 @@
 		<property name="frontendTemplateName" value="DeliverySentEmailTemplate"/>
 	</bean>
 
+	<bean id="generateNewQuestionsEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="NewQuestionsEmailTemplate"/>
+	</bean>
+
 	<bean id="generateReadyForPickupEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="ReadyForPickupEmailTemplate"/>
 	</bean>
@@ -471,6 +475,11 @@
 		<property name="resource" value="classpath:/trainingcore/processes/quote/quote-expired-email-process.xml"/>
 	</bean>
 
+	<bean id="sendNewQuestionsProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/trainingcore/processes/sendNewQuestionsEmailProcess.xml"/>
+	</bean>
+
 	<!-- Quotes email notification jobs -->
 	<bean id="quoteToExpireSoonJobPerformable"
 		  class="de.hybris.training.core.job.QuoteToExpireSoonJobPerformable"
@@ -497,6 +506,15 @@
 		<property name="commerceQuoteDao" ref="commerceQuoteDao"/>
 		<property name="eventService" ref="eventService" />
 		<property name="timeService" ref="timeService" />
+	</bean>
+
+	<bean id="sendNewQuestionsEmailJobPerformable"
+		  class="de.hybris.training.core.job.SendNewQuestionsEmailJobPerformable"
+		  parent="abstractJobPerformable">
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="cronJobHistoryService" ref="cronJobHistoryService"/>
+		<property name="questionDao" ref="questionDao"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
 	</bean>
 
 	<import resource="/trainingcore/processes/quote/quote-buyer-process-spring.xml"/>
@@ -538,5 +556,9 @@
 	<bean id="defaultCSTicketStagnationAction" class="de.hybris.training.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
+	</bean>
+
+	<bean id="questionDao" class="de.hybris.training.core.dao.impl.DefaultQuestionDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
 </beans>
