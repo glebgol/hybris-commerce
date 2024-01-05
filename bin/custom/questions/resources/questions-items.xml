@@ -49,6 +49,11 @@
 					<modifiers optional="true"/>
 					<persistence type="property"/>
 				</attribute>
+				<attribute qualifier="approved" type="java.lang.Boolean">
+					<modifiers optional="false" read="true" write="true" search="true"/>
+					<persistence type="property"/>
+					<defaultvalue>false</defaultvalue>
+				</attribute>
 			</attributes>
 		</itemtype>
 

@@ -15,9 +15,9 @@
                 		
         
         <coremodule generated="true" manager="com.training.questions.jalo.QuestionsManager" packageroot="com.training.questions"/>
-                		
-        
-        		
+
+
+        <meta key="backoffice-module" value="true"/>
         
         <meta key="classpathgen" value="false"/>
                 		
