@@ -12,5 +12,6 @@ public class QuestionPopulator implements Populator<QuestionModel, QuestionData>
         questionData.setQuestionCustomer(questionModel.getCustomer().getName());
         questionData.setAnswer(questionModel.getAnswer());
         questionData.setAnswerCustomer(questionModel.getAnswerCustomer().getName());
+        questionData.setCode(questionModel.getCode());
     }
 }

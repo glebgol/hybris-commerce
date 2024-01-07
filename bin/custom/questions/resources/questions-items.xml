@@ -9,6 +9,11 @@
 <items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			xsi:noNamespaceSchemaLocation="items.xsd">
 
+	<collectiontypes>
+		<collectiontype code="QuestionList" elementtype="Question" autocreate="true" generate="true"
+						type="list"/>
+	</collectiontypes>
+
 	<relations>
 		<relation code="Question2Product" autocreate="true" generate="false" localized="false">
 			<sourceElement qualifier="questions" type="Question" collectiontype="set" cardinality="many">
@@ -43,6 +48,11 @@
 				<attribute qualifier="answerCustomer" type="Customer">
 					<modifiers optional="true"/>
 					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="approved" type="java.lang.Boolean">
+					<modifiers optional="false" read="true" write="true" search="true"/>
+					<persistence type="property"/>
+					<defaultvalue>false</defaultvalue>
 				</attribute>
 			</attributes>
 		</itemtype>

@@ -31,6 +31,15 @@
 
         <!-- Add your item definitions here -->
 
+        <itemtype code="SendNewQuestionsEmailProcess" extends="StoreFrontCustomerProcess"
+                  jaloclass="de.hybris.training.core.jalo.SendNewQuestionsEmailProcess">
+            <attributes>
+                <attribute qualifier="questionList" type="QuestionList">
+                    <modifiers/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
 
