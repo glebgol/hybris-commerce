@@ -1,0 +1,7 @@
+$catalogVersion = catalogVersion(catalog(id[default = 'electronicsProductCatalog']), version[default = 'Staged'])
+
+INSERT_UPDATE Product; code[unique = true]; warrantyYears; $catalogVersion[unique=true]
+                     ; 23355              ; 2            ;
+                     ; 65652              ; 1            ;
+                     ; 1382080            ; 3            ;
+                     ; 2053266            ; 0            ;

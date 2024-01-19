@@ -37,6 +37,7 @@ INSERT_UPDATE SolrSearchConfig; description[unique = true]; pageSize
 
 INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; facet[default = true]; facetType(code); priority; facetDisplayNameProvider               ; facetSortProvider; facetTopValuesProvider; includeInResponse[default = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]
                                      ; questionsCount:$solrIndexedType                                  ;                      ; MultiSelectOr  ; 5000    ; questionsCountFacetDisplayNameProvider ;                  ;                       ;                                  ;
+; warrantyYears:$solrIndexedType                                  ;                      ; MultiSelectOr  ; 4000    ;  ;                  ;                       ;                                  ;
 
 INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); variant; sorts(&sortRefID)
 
@@ -47,15 +48,21 @@ UPDATE BaseSite; uid[unique = true]; solrFacetSearchConfiguration(name)
 # Define price range set
 INSERT_UPDATE SolrValueRangeSet; name[unique = true]    ; qualifier; type; solrValueRanges(&rangeValueRefID)
                                ; questionsCountRangeSet ;          ; int ; questionCount0,questionCount1,questionCount2,questionCount3,questionCount4,questionCount5
+                               ; warrantyYearsRangeSet  ;          ; int ; 0warrantyYears,1warrantyYears,2warrantyYears,3warrantyYears,4andmorewarrantyYears
 
 # Define price ranges
-INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
-                            ; questionCount0  ; questionsCountRangeSet                ; 0                  ; 0   ; 0
-                            ; questionCount1  ; questionsCountRangeSet                ; 1                  ; 1   ; 1
-                            ; questionCount2  ; questionsCountRangeSet                ; 2                  ; 2   ; 2
-                            ; questionCount3  ; questionsCountRangeSet                ; 3                  ; 3   ; 3
-                            ; questionCount4  ; questionsCountRangeSet                ; 4                  ; 4   ; 4
-                            ; questionCount5  ; questionsCountRangeSet                ; 5                  ; 5   ; 100
+INSERT_UPDATE SolrValueRange; &rangeValueRefID      ; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
+                            ; questionCount0        ; questionsCountRangeSet                ; 0                  ; 0   ; 0
+                            ; questionCount1        ; questionsCountRangeSet                ; 1                  ; 1   ; 1
+                            ; questionCount2        ; questionsCountRangeSet                ; 2                  ; 2   ; 2
+                            ; questionCount3        ; questionsCountRangeSet                ; 3                  ; 3   ; 3
+                            ; questionCount4        ; questionsCountRangeSet                ; 4                  ; 4   ; 4
+                            ; questionCount5        ; questionsCountRangeSet                ; 5                  ; 5   ; 100
+                            ; 0warrantyYears        ; warrantyYearsRangeSet                 ; 0                  ; 0   ; 0
+                            ; 1warrantyYears        ; warrantyYearsRangeSet                 ; 1                  ; 1   ; 1
+                            ; 2warrantyYears        ; warrantyYearsRangeSet                 ; 2                  ; 2   ; 2
+                            ; 3warrantyYears        ; warrantyYearsRangeSet                 ; 3                  ; 3   ; 3
+                            ; 4andmorewarrantyYears ; warrantyYearsRangeSet                 ; 4                  ; 4   ; 100
 
 # Non-facet properties
 INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; valueProviderParameter
@@ -69,6 +76,10 @@ INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; n
 # Other facet properties
 INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = true]; facetType(code); facetSort(code); priority; visible; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider          ; facetDisplayNameProvider               ; customFacetSortProvider; topValuesProvider        ; rangeSets(name)        ; displayName
                                  ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                      ; MultiSelectOr  ; Alpha          ; 4000    ; true   ;                                     ;                                    ; questionsCountValueProvider ; questionsCountFacetDisplayNameProvider ;                        ; defaultTopValuesProvider ; questionsCountRangeSet ; number of questions
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); fieldValueProvider         ; rangeSet(name)        ; displayName
+                                 ; $solrIndexedType                          ; warrantyYears      ; int       ; warrantyYearsValueProvider ; warrantyYearsRangeSet ; Warranty Years
+
 # Create the queries that will be used to extract data for Solr
 INSERT_UPDATE SolrIndexerQuery; solrIndexedType(identifier)[unique = true]; identifier[unique = true]; type(code); injectCurrentDate[default = true]; injectCurrentTime[default = true]; injectLastIndexTime[default = true]; query; user(uid)
 

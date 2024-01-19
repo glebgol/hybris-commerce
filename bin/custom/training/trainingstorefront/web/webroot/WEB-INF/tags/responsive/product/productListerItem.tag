@@ -28,6 +28,11 @@
 			<a class="product__list--name" href="${fn:escapeXml(productUrl)}">${ycommerce:sanitizeHTML(product.name)}</a>
 		</ycommerce:testId>
 
+		<c:if test="${not empty product.warrantyYears}">
+			<h3>Warranty Years: ${product.warrantyYears}</h3>
+		</c:if>
+		<h1>test</h1>
+
 		<div class="product__list--price-panel">
 			<c:if test="${not empty product.potentialPromotions}">
 				<div class="product__listing--promo">

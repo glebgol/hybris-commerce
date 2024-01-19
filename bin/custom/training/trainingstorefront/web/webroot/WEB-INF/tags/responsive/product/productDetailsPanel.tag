@@ -3,6 +3,7 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="product-details page-title">
 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
@@ -24,6 +25,10 @@
 						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 							<product:productPricePanel product="${product}" />
 						</ycommerce:testId>
+						<c:if test="${not empty product.warrantyYears}">
+							<h3>Warranty Years: ${product.warrantyYears}</h3>
+						</c:if>
+						<h1>test</h1>
 						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
 					</div>
 				</div>
